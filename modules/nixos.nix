@@ -79,11 +79,7 @@ in {
         image = "manifestdotbuild/manifest:${cfg.imageTag}";
         ports = ["127.0.0.1:${toString manifestPort}:${toString manifestPort}"];
         environmentFiles = [staticEnvFile runtimeEnvFile];
-        dependsOn = {
-          manifest-postgres = {
-            condition = "service_healthy";
-          };
-        };
+        dependsOn = ["manifest-postgres"];
         extraOptions = ["--add-host=host.docker.internal:host-gateway"];
         log-driver = "journald";
         cmd = ["packages/backend/dist/main.js"];
