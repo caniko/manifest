@@ -8,7 +8,7 @@ manifestFlake: {
 
   cfg = config.services.manifest;
 
-  manifestPort = 3001;
+  manifestPort = 2099;
   postgresPort = 5432;
 
   # Static env — no secrets. The BETTER_AUTH_SECRET env file is
