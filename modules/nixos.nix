@@ -72,7 +72,7 @@ in {
         environmentFiles = [postgresEnvFile];
         volumes = ["manifest-pgdata:/var/lib/postgresql/data"];
         cmd = ["-p" "${toString postgresPort}"];
-        logDriver = "journald";
+        log-driver = "journald";
       };
 
       manifest = {
@@ -85,7 +85,7 @@ in {
           };
         };
         extraOptions = ["--add-host=host.docker.internal:host-gateway"];
-        logDriver = "journald";
+        log-driver = "journald";
         cmd = ["packages/backend/dist/main.js"];
       };
     };
