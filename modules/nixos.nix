@@ -69,7 +69,7 @@ in {
       manifest-postgres = {
         image = "postgres:16-alpine";
         ports = ["127.0.0.1:${toString postgresPort}:${toString postgresPort}"];
-        environmentFile = [postgresEnvFile];
+        environmentFiles = [postgresEnvFile];
         volumes = ["manifest-pgdata:/var/lib/postgresql/data"];
         cmd = ["-p" "${toString postgresPort}"];
         log-driver = "journald";
@@ -78,7 +78,7 @@ in {
       manifest = {
         image = "manifestdotbuild/manifest:${cfg.imageTag}";
         ports = ["127.0.0.1:${toString manifestPort}:${toString manifestPort}"];
-        environmentFile = [staticEnvFile runtimeEnvFile];
+        environmentFiles = [staticEnvFile runtimeEnvFile];
         dependsOn = {
           manifest-postgres = {
             condition = "service_healthy";
